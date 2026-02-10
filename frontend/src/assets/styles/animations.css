@@ -1,0 +1,165 @@
+/* ============================================
+   动画定义文件 (Animations)
+   ============================================
+   
+   本文件定义了应用中使用的所有动画效果，包括：
+   - 关键帧动画（fadeIn, slideIn, scaleIn, spin）
+   - Vue 过渡类（fade, slide, list）
+   - 减少动画偏好支持
+   
+   需求：4.1, 4.2
+   ============================================ */
+
+/* ============================================
+   关键帧动画定义
+   ============================================ */
+
+/* 淡入动画 - 用于元素的渐显效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 滑入动画 - 用于元素从下方滑入 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 缩放动画 - 用于元素的缩放进入效果 */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 旋转动画 - 用于加载指示器 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 闪烁动画 - 用于骨架屏加载效果 */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+   Vue 过渡类定义
+   ============================================ */
+
+/* Fade 过渡 - 简单的淡入淡出效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--transition-base);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Slide 过渡 - 滑入滑出效果 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all var(--transition-base);
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* List 过渡 - 用于列表项的添加/删除动画 */
+.list-enter-active,
+.list-leave-active {
+  transition: all var(--transition-base);
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* List move 过渡 - 用于列表项重新排序时的平滑移动 */
+.list-move {
+  transition: transform var(--transition-base);
+}
+
+/* ============================================
+   工具类 - 可直接应用的动画类
+   ============================================ */
+
+/* 应用淡入动画 */
+.animate-fade-in {
+  animation: fadeIn var(--transition-base);
+}
+
+/* 应用滑入动画 */
+.animate-slide-in {
+  animation: slideIn var(--transition-base);
+}
+
+/* 应用缩放动画 */
+.animate-scale-in {
+  animation: scaleIn var(--transition-base);
+}
+
+/* 应用旋转动画 */
+.animate-spin {
+  animation: spin 0.8s linear infinite;
+}
+
+/* 应用闪烁动画 */
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================
+   可访问性支持 - 减少动画偏好
+   ============================================
+   
+   为偏好减少动画的用户提供支持
+   需求：9.1
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

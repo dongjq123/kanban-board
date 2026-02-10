@@ -1,0 +1,259 @@
+/**
+ * Base Styles Reset
+ * 
+ * This file provides foundational CSS resets and base styles for the application.
+ * It ensures consistent rendering across browsers and establishes baseline styles
+ * for common HTML elements.
+ * 
+ * 基础样式重置
+ * 
+ * 本文件为应用提供基础的 CSS 重置和基础样式。
+ * 确保跨浏览器的一致渲染，并为常见 HTML 元素建立基准样式。
+ */
+
+/* ========================================
+   Box Model Reset
+   ======================================== */
+
+/**
+ * Apply border-box sizing to all elements for more intuitive box model behavior.
+ * This ensures padding and border are included in element's total width/height.
+ * 
+ * 为所有元素应用 border-box 盒模型，使盒模型行为更直观。
+ * 这确保 padding 和 border 包含在元素的总宽度/高度中。
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ========================================
+   HTML & Body Base Styles
+   ======================================== */
+
+/**
+ * Set base font size and enable font smoothing for better text rendering.
+ * 
+ * 设置基础字体大小并启用字体平滑以获得更好的文本渲染效果。
+ */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Apply base typography and color scheme to body.
+ * Uses CSS variables from variables.css for consistency.
+ * 
+ * 为 body 应用基础排版和配色方案。
+ * 使用 variables.css 中的 CSS 变量以确保一致性。
+ */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+
+/* ========================================
+   Button Reset
+   ======================================== */
+
+/**
+ * Reset button styles to remove browser defaults.
+ * Inherit font properties and set cursor to pointer for better UX.
+ * 
+ * 重置按钮样式以移除浏览器默认样式。
+ * 继承字体属性并设置指针光标以获得更好的用户体验。
+ */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/**
+ * Remove default focus outline on buttons.
+ * Individual components should define their own focus styles.
+ * 
+ * 移除按钮的默认焦点轮廓。
+ * 各个组件应定义自己的焦点样式。
+ */
+button:focus {
+  outline: none;
+}
+
+
+/* ========================================
+   Input & Textarea Reset
+   ======================================== */
+
+/**
+ * Ensure form elements inherit font properties for consistency.
+ * 
+ * 确保表单元素继承字体属性以保持一致性。
+ */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/**
+ * Remove default focus outline on inputs.
+ * Individual components should define their own focus styles.
+ * 
+ * 移除输入框的默认焦点轮廓。
+ * 各个组件应定义自己的焦点样式。
+ */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+
+/* ========================================
+   Link Reset
+   ======================================== */
+
+/**
+ * Style links with primary color and remove default underline.
+ * Add underline on hover for better accessibility.
+ * 
+ * 使用主色调为链接设置样式并移除默认下划线。
+ * 悬停时添加下划线以提高可访问性。
+ */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/**
+ * Remove focus outline on links.
+ * Hover and active states provide sufficient visual feedback.
+ * 
+ * 移除链接的焦点轮廓。
+ * 悬停和激活状态提供足够的视觉反馈。
+ */
+a:focus {
+  outline: none;
+}
+
+
+/* ========================================
+   List Reset
+   ======================================== */
+
+/**
+ * Remove default list styles.
+ * Components can add their own list styling as needed.
+ * 
+ * 移除默认列表样式。
+ * 组件可以根据需要添加自己的列表样式。
+ */
+ul,
+ol {
+  list-style: none;
+}
+
+
+/* ========================================
+   Heading Reset
+   ======================================== */
+
+/**
+ * Reset heading font sizes and weights.
+ * Components should define their own heading styles.
+ * 
+ * 重置标题字体大小和字重。
+ * 组件应定义自己的标题样式。
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+
+/* ========================================
+   Image & Media Reset
+   ======================================== */
+
+/**
+ * Make images responsive by default.
+ * 
+ * 默认使图片具有响应性。
+ */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ========================================
+   Table Reset
+   ======================================== */
+
+/**
+ * Reset table border spacing and collapse borders.
+ * 
+ * 重置表格边框间距并合并边框。
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+/**
+ * Improve text rendering for better readability.
+ * 
+ * 改善文本渲染以提高可读性。
+ */
+body {
+  text-rendering: optimizeLegibility;
+}
+
+/**
+ * Hide elements visually but keep them accessible to screen readers.
+ * 
+ * 在视觉上隐藏元素但保持屏幕阅读器可访问。
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

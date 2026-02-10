@@ -1,0 +1,134 @@
+/**
+ * Design Tokens (CSS Variables)
+ * 
+ * This file defines the foundational design system for the task board application.
+ * All theme-related values should reference these CSS variables for consistency
+ * and easy maintenance.
+ * 
+ * 设计令牌（CSS 变量）
+ * 
+ * 本文件定义了任务看板应用的基础设计系统。
+ * 所有主题相关的值都应引用这些 CSS 变量以确保一致性和易于维护。
+ */
+
+:root {
+  /* ========================================
+     颜色系统 (Color System)
+     ======================================== */
+  
+  /* 主色调 - 蓝色系 (Primary Colors - Blue) */
+  --color-primary: #3b82f6;
+  --color-primary-light: #60a5fa;
+  --color-primary-dark: #2563eb;
+  
+  /* 辅助色 (Secondary Colors) */
+  --color-secondary: #8b5cf6;
+  --color-accent: #10b981;
+  
+  /* 中性色 (Neutral Colors) */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* 语义化颜色 (Semantic Colors) */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* 背景色 (Background Colors) */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-tertiary: #f3f4f6;
+  
+  /* 文字颜色 (Text Colors) */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  
+  
+  /* ========================================
+     间距系统 (Spacing System)
+     基于 4px 基准 (Based on 4px baseline)
+     ======================================== */
+  
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  
+  /* ========================================
+     字体系统 (Typography System)
+     ======================================== */
+  
+  /* 字体族 (Font Families) */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                      'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  
+  /* 字体大小 (Font Sizes) */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  
+  /* 字重 (Font Weights) */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* 行高 (Line Heights) */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  
+  /* ========================================
+     阴影系统 (Shadow System)
+     ======================================== */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 
+                 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+               0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+               0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+               0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  
+  /* ========================================
+     圆角系统 (Border Radius System)
+     ======================================== */
+  
+  --radius-sm: 4px;
+  --radius-base: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  
+  /* ========================================
+     过渡动画时长 (Transition Durations)
+     ======================================== */
+  
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}

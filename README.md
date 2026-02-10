@@ -1,96 +1,267 @@
-# 🚀 Prompt2Repo 准入考核 (Entrance Challenge)
+# Visual Task Board
 
-## 📌 考核背景
-本项目寻找具备 **"AI Native" (Vibe Coding)** 能力的资深工程师。我们需要你展示如何利用 **Cursor / Trae / Claude Code** 等 AI 工具，快速构建**工程化标准**的应用。
+A visual task management tool similar to Trello, built with Vue.js and Flask.
 
-> **核心考核点**：
-> 1. **AI 驾驭能力**：不仅是生成代码，而是生成架构、调试 Bug、优化工程。
-> 2. **Docker 交付标准**：强制容器化交付，拒绝“在我本地能跑”的代码。
-> 3. **全栈审美**：拒绝简陋 UI，需具备商业级交付意识。
+## Overview
 
----
+Visual Task Board is a web-based application that helps you organize and track work using a three-tier structure:
+- **Boards**: Top-level workspaces for different projects
+- **Lists**: Columns within boards representing workflow stages
+- **Cards**: Individual tasks with details like descriptions, due dates, and tags
 
-## 🎯 题目菜单 (任选其一)
+## Features
 
-请根据你的技术栈，从以下 5 个题目中**任选 1 个**完成。
+- ✅ Create and manage multiple boards
+- ✅ Add unlimited lists to organize workflow stages
+- ✅ Create cards with titles, descriptions, due dates, and tags
+- ✅ Drag and drop cards between lists
+- ✅ Drag and drop lists to reorder them
+- ✅ Real-time data persistence
+- ✅ Responsive design for all devices
+- ✅ RESTful API architecture
 
-### A 纯前端：动态主题仪表盘 (SaaS Dashboard)
-* **目标**：构建一个销售数据看板，支持 Light/Dark 主题切换。
-* **技术**：React/Vue + Echarts/Recharts + **Tailwind/AntD (必选)**。
-* **交付**：将前端静态资源或服务容器化，实现一键启动。
+## Technology Stack
 
-### B 纯后端：短链接生成服务 (URL Shortener)
-* **目标**：实现长链接转短链接的 REST API (POST/GET)，含重定向逻辑。
-* **技术**：Python/Go/Java/Node + Redis/SQLite。
-* **交付**：API 服务与数据库均需 Docker 化。
+### Frontend
+- Vue.js 3
+- Vuex 4 (State Management)
+- Axios (HTTP Client)
+- Vue.Draggable (Drag & Drop)
+- Jest (Testing)
 
-### C 全栈：看板任务管理 (Kanban Board) —— ⭐ 推荐
-* **目标**：实现类似 Trello 的任务拖拽 (Todo/Doing/Done) 及数据同步。
-* **技术**：Web 前端 + 后端 API + 数据库。
-* **交付**：前后端及数据库必须通过 `docker compose` 一键联调。
+### Backend
+- Python Flask
+- SQLAlchemy (ORM)
+- MySQL (Database)
+- pytest + Hypothesis (Testing)
 
-### D 跨平台/小程序：咖啡点单 (Coffee Order App)
-* **目标**：模拟点单流程（商品列表、规格选择、购物车）。
-* **技术**：Uni-app / Taro / Flutter / 微信原生。
-* **交付**：**客户端代码本地运行** + **后端 API/DB 必须 Docker 化**。
+### Deployment
+- Docker & Docker Compose
+- Nginx (Frontend Server)
 
-### E 原生移动端：健身计时器 (Fitness Timer)
-* **目标**：HIIT 倒计时工具，支持后台运行和声音提示。
-* **技术**：Swift / Kotlin / React Native。
-* **交付**：**App 代码本地运行** + **后端 API/DB 必须 Docker 化**。
+## Project Structure
 
----
+```
+visual-task-board/
+├── backend/              # Flask API server
+│   ├── models/          # Database models
+│   ├── routes/          # API endpoints
+│   ├── services/        # Business logic
+│   ├── utils/           # Utilities
+│   └── tests/           # Backend tests
+├── frontend/            # Vue.js application
+│   ├── src/
+│   │   ├── components/  # Vue components
+│   │   ├── store/       # Vuex store
+│   │   └── services/    # API services
+│   └── tests/           # Frontend tests
+└── .kiro/               # Project specifications
+    └── specs/
+        └── visual-task-board/
+```
 
-## 📦 统一交付标准 (Unified Delivery Standard)
+## Getting Started
 
-本项目强制要求 **Docker 化交付**。请根据你选择的题目类型，遵守以下目录结构和规范：
+### Prerequisites
 
-### 1. 针对 Web / 全栈 / 纯后端 (Type A, B, C)
-你的仓库必须包含完整的前后端容器配置。
-* **结构示例**：
-  ```text
-  ├── frontend/ (含 Dockerfile)
-  ├── backend/  (含 Dockerfile)
-  └── docker-compose.yml  <-- 必须包含，负责启动所有服务
-### 验收标准
-阅卷官执行 `docker compose up` 后，浏览器打开 `localhost:xxxx` 即可正常使用。
+- Python 3.9+
+- Node.js 16+
+- MySQL 8.0+
+- Docker & Docker Compose (for containerized deployment)
 
-### 2. 针对 移动端/小程序
-我们理解 App 无法在容器内运行，因此采取
-**“后端装箱，前端裸奔”**的策略。
+### Quick Start with Docker (Recommended)
 
-* **结构示例**：
-  ```text
-  ├── client/             <-- 放置 App/小程序源码 (无需 Docker)
-  ├── backend/            <-- 放置后端 API 源码 (必须 Docker)
-  └── docker-compose.yml  <-- 仅负责启动 backend 和 db
-  ### 验收标准
-* **GitHub Actions** 必须能成功构建 Backend 镜像。
-* **必须提供录屏**：展示 App 在模拟器/真机上运行，并成功连接 Docker 后端的演示。
+The easiest way to run the application is using Docker Compose:
 
-> ⚠️ **网络连接提示 (Crucial Tip)**：
-> 在模拟器中访问 Docker 后端时，**不能使用 `localhost`**：
-> * **Android 模拟器**：请尝试 `10.0.2.2:端口`
-> * **真机调试**：请使用电脑的局域网 IP (如 `192.168.1.x`)
-> * *请在代码中预留 Base URL 配置项。*
+```bash
+# Clone the repository
+git clone <repository-url>
+cd visual-task-board
 
----
+# Start all services
+docker-compose up -d
 
-## 🚨 验收红线 (Red Lines)
-**出现以下情况将直接淘汰，不予人工审核：**
+# View logs
+docker-compose logs -f
 
-* ❌ **CI 构建失败**：GitHub Actions 页面显示红色 ❌ (Build Failed)。
-* ❌ **无 Docker 配置**：根目录找不到有效 `docker-compose.yml`。
-* ❌ **UI 审美缺失**：界面排版混乱、无间距、使用浏览器默认样式。
-* ❌ **缺少演示视频**：移动端/小程序未提供真机运行录屏。
+# Stop all services
+docker-compose down
+```
 
----
+The application will be available at:
+- **Frontend**: http://localhost
+- **Backend API**: http://localhost:5000
+- **MySQL**: localhost:3306
 
-## 🚀 操作流程 (How to Start)
+### Development Setup
 
-1.  **领取考卷**：点击本页面右上角绿色按钮 **[Use this template]** -> **Create a new repository**。
-    * *注意：请将你的仓库设为 **Public**，否则 Actions 可能无法运行。*
-2.  **AI 开发**：使用 Cursor/Antigravity 等工具完成代码。
-3.  **机器自测**：Push 代码后，点击仓库顶部的 **[Actions]** 标签，确保显示 ✅ (Green)。
-4.  **提交作业**：
-    * 请将 **GitHub 仓库链接** + **Actions 绿灯截图** + **演示视频** 提交给招聘方。
+#### Backend Setup
+
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure database
+cp .env.example .env
+# Edit .env with your database configuration:
+# DATABASE_URL=mysql+pymysql://user:password@localhost:3306/kanban
+
+# Run migrations
+python migrate.py
+
+# Start development server
+python app.py
+```
+
+The backend API will be available at http://localhost:5000
+
+#### Frontend Setup
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run serve
+```
+
+The frontend will be available at http://localhost:8080
+
+### Docker Deployment
+
+#### Architecture
+
+The Docker deployment consists of three services:
+
+1. **MySQL Database** (port 3306)
+   - Persistent data storage with Docker volumes
+   - Automatic initialization with schema
+
+2. **Flask Backend** (port 5000)
+   - Python Flask API server
+   - Connects to MySQL database
+
+3. **Nginx Frontend** (port 80)
+   - Serves Vue.js static files
+   - Proxies API requests to backend
+
+#### Configuration
+
+The `docker-compose.yml` file defines all services and their configuration:
+
+```yaml
+services:
+  mysql:      # Database service
+  backend:    # Flask API
+  frontend:   # Nginx + Vue.js
+```
+
+#### Environment Variables
+
+Backend environment variables (configured in docker-compose.yml):
+- `DATABASE_URL`: MySQL connection string
+- `FLASK_ENV`: Application environment (production/development)
+
+#### Data Persistence
+
+MySQL data is persisted using Docker volumes:
+```bash
+# View volumes
+docker volume ls
+
+# Backup database
+docker exec kanban-mysql mysqldump -u kanban_user -pkanban_password kanban > backup.sql
+
+# Restore database
+docker exec -i kanban-mysql mysql -u kanban_user -pkanban_password kanban < backup.sql
+```
+
+#### Troubleshooting
+
+**Backend not connecting to database:**
+```bash
+# Check if MySQL is healthy
+docker-compose ps
+
+# View backend logs
+docker-compose logs backend
+
+# Restart backend service
+docker-compose restart backend
+```
+
+**Frontend not loading:**
+```bash
+# Check Nginx logs
+docker-compose logs frontend
+
+# Rebuild frontend
+docker-compose up -d --build frontend
+```
+
+**Reset everything:**
+```bash
+# Stop and remove all containers, networks, and volumes
+docker-compose down -v
+
+# Rebuild and start
+docker-compose up -d --build
+```
+
+## Testing
+
+### Backend Tests
+
+```bash
+cd backend
+pytest --cov=. --cov-report=html
+```
+
+### Frontend Tests
+
+```bash
+cd frontend
+npm run test:unit
+npm run test:coverage
+```
+
+## API Documentation
+
+The backend provides a RESTful API. See [backend/README.md](backend/README.md) for detailed API documentation.
+
+## Development Workflow
+
+This project follows an incremental development approach:
+
+1. ✅ **Task 1**: Project structure and environment setup
+2. **Task 2**: Database models and initialization
+3. **Task 3**: Board API endpoints
+4. **Task 4**: List API endpoints
+5. **Task 5**: Card API endpoints
+6. **Task 6**: Error handling and validation
+7. **Task 7**: Flask application configuration
+8. **Task 9-10**: Frontend state management and API services
+9. **Task 11**: UI components
+10. **Task 12-13**: UI enhancements and drag & drop
+11. **Task 15**: Docker containerization
+12. **Task 16**: Integration testing
+
+## Contributing
+
+1. Follow the task list in `.kiro/specs/visual-task-board/tasks.md`
+2. Write tests for all new features
+3. Use Black for Python code formatting
+4. Use ESLint + Prettier for JavaScript code formatting
+5. Ensure all tests pass before committing
+
+## License
+
+This project is for educational purposes.

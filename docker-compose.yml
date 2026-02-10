@@ -1,22 +1,69 @@
 version: '3.8'
 
 services:
-  # ----------------------------
-  # [TODO] 候选人请在此处补充配置
-  # ----------------------------
+  # MySQL 数据库服务
+  # 需求：8.3, 8.6, 8.7
+  mysql:
+    image: mysql:8.0
+    container_name: kanban-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: kanban
+      MYSQL_USER: kanban_user
+      MYSQL_PASSWORD: kanban_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - kanban-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
 
-  # 示例结构 (请取消注释并修改):
+  # 后端 Flask 服务
+  # 需求：8.2, 8.4
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: kanban-backend
+    restart: always
+    environment:
+      DATABASE_URL: mysql+pymysql://kanban_user:kanban_password@mysql:3306/kanban
+      FLASK_ENV: production
+    ports:
+      - "5000:5000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - kanban-network
+    volumes:
+      - ./backend:/app
 
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:3000"
+  # 前端 Nginx 服务
+  # 需求：8.1, 8.4
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: kanban-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - kanban-network
 
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "8000:8000"
+networks:
+  kanban-network:
+    driver: bridge
 
-  # db:
-  #   image: postgres:15 (or mysql/redis)
-  #   ...
+volumes:
+  mysql_data:
+    driver: local
